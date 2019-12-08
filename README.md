@@ -1,0 +1,2 @@
+# JavaUsefulCode
+Useful patterns
