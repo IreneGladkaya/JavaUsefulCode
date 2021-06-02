@@ -1,0 +1,53 @@
+package util;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.nd4j.linalg.api.ndarray.INDArray;
+import org.nd4j.linalg.cpu.nativecpu.NDArray;
+import org.nd4j.linalg.dimensionalityreduction.PCA;
+
+
+public class RunPCA {
+    public static void main(String[] args) {
+        //Create points as NDArray instances
+        List<INDArray> ndArrays = Arrays.asList(
+                new NDArray(new float[]{-1.0F, -1.0F}),
+                new NDArray(new float[]{-1.0F, 1.0F}),
+                new NDArray(new float[]{1.0F, 1.0F}));
+
+        //Create matrix of points (rows are observations; columns are features)
+        INDArray matrix = new NDArray(ndArrays, new int[]{3, 2});
+
+        //Execute PCA - again to 2 dimensions
+        INDArray factors = PCA.pca_factor(matrix, 2, false);
+        System.out.println(factors);
+        //for (int i : factors) {
+          //  System.out.println(i);
+        //}
+    }
+}
+
+
+<dependency>
+    <groupId>org.deeplearning4j</groupId>
+    <artifactId>deeplearning4j</artifactId>
+    <version>1.0.0-beta7</version>
+    <type>pom</type>
+</dependency>
+<dependency>
+    <groupId>org.nd4j</groupId>
+    <artifactId>nd4j</artifactId>
+    <version>1.0.0-beta7</version>
+    <type>pom</type>
+</dependency>
+<dependency>
+    <groupId>org.nd4j</groupId>
+    <artifactId>nd4j-api</artifactId>
+    <version>1.0.0-beta7</version>
+</dependency>
+<dependency>
+    <groupId>org.nd4j</groupId>
+    <artifactId>nd4j-native</artifactId>
+    <version>1.0.0-beta7</version>
+</dependency>
